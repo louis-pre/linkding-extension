@@ -27,7 +27,9 @@
 
         const word = getCurrentWord(input);
 
-        suggestions = word ? tags.filter(tag => tag.indexOf(word) === 0) : [];
+        const usedTags = input.value.split(" ").map(tag => tag.trim())
+
+        suggestions = word ? tags.filter(tag => tag.indexOf(word) === 0 && usedTags.indexOf(tag) === -1) : [];
 
         if (word && suggestions.length > 0) {
             open();
